@@ -1,1 +1,18 @@
-<p>card works!</p>
+<div class="card" *ngIf="card" (click)="goToDetail()">
+  <div class="card__details">
+    <p class="card__name"><strong> Nome: </strong> {{ card.name }}</p>
+    <p class="card__id"><strong> Id: </strong> {{ card.id }}</p>
+    <p
+      class="card__types"
+      *ngFor="let type of card.types; let typeIndex = index"
+    >
+      <strong> Tipo: </strong>
+      {{
+        typeIndex % 2 === 0 && typeIndex > card.types.length
+          ? type + ' / '
+          : type
+      }}
+    </p>
+  </div>
+  <img [src]="card?.imageUrl" [alt]="card.name" class="card__banner" />
+</div>

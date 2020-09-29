@@ -1,0 +1,10 @@
+<section class="pokemons-list">
+  <div class="pokemons-list__cards">
+    <app-card
+      class="pokemons-list__card"
+      *ngFor="let card of cards"
+      [card]="card"
+      (clicked)="goToDetails($event)"
+    ></app-card>
+  </div>
+</section>

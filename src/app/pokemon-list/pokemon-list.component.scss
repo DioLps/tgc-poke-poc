@@ -1,0 +1,24 @@
+@import '../../variables';
+
+.pokemons-list {
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    @media only screen and (max-width: $breakpoint-tablet) {
+      flex-wrap: nowrap;
+      flex-direction: row;
+      overflow-x: scroll;
+    }
+  }
+  &__card {
+    flex: 0 0 24%;
+    margin-bottom: 16px;
+    @media only screen and (max-width: $breakpoint-tablet) {
+      flex: 0 0 100%;
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
+  }
+}
