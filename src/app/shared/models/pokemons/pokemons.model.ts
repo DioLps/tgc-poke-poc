@@ -1,7 +1,14 @@
-import { Attack } from '../attack/attack';
-import { Weakness } from '../weakness/weakness';
+import { Attack } from '../attack/attack.model';
+import { Resistance } from '../resistance/resistance.model';
+import { Weakness } from '../weakness/weakness.model';
 
-export class Card {
+export interface PokemonsStateData {
+  pokemons: Array<PokemonData>;
+  selectedCard?: PokemonData;
+  attackDetail?: Attack;
+}
+
+export interface PokemonData {
   id: string;
   name: string;
   nationalPokedexNumber: number;
@@ -20,5 +27,6 @@ export class Card {
   set: string;
   setCode: string;
   attacks: Array<Attack>;
+  resistances?: Array<Resistance>;
   weaknesses: Array<Weakness>;
 }

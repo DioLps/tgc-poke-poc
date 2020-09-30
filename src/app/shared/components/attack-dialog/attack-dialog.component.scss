@@ -1,0 +1,29 @@
+.attack-dialog {
+  background-color: #3f51b5;
+  color: white;
+  &__body {
+    padding: 24px;
+    font-size: 18px;
+  }
+  &__label {
+    flex: 0 0 30%;
+    text-align: left;
+  }
+
+  &__cost,
+  &__name,
+  &__damage,
+  &__description {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+  }
+
+  &__description {
+    .attack-dialog__value {
+      overflow-wrap: break-word;
+      text-align: right !important;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Card } from '../../models/card/card';
+import { PokemonData } from '../../models/pokemons/pokemons.model';
 
 @Component({
   selector: 'app-card',
@@ -7,8 +7,8 @@ import { Card } from '../../models/card/card';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() public card: Card;
-  @Output() public clicked: EventEmitter<Card>;
+  @Input() public card: PokemonData;
+  @Output() public clicked: EventEmitter<PokemonData>;
   constructor() {
     this.clicked = new EventEmitter();
   }

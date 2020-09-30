@@ -1,1 +1,101 @@
-<p>pokemon-detail works!</p>
+<section class="pokemon-detail">
+  <img
+    [src]="selectedPokemon?.imageUrlHiRes"
+    appImgFallback
+    [alt]="selectedPokemon?.name"
+    class="pokemon-detail__banner"
+  />
+  <h2 class="pokemon-detail__name" [innerText]="selectedPokemon?.name"></h2>
+  <div class="pokemon-detail__body">
+    <div class="pokemon-detail__ids">
+      <strong class="pokemon-detail__label"> Id: </strong>
+      <span
+        class="pokemon-detail__id"
+        [innerText]="selectedPokemon?.id || 'N/A'"
+      ></span>
+    </div>
+    <div
+      class="pokemon-detail__types"
+      [class.pokemon-detail--more-than-one]="selectedPokemon?.types?.length > 1"
+    >
+      <strong class="pokemon-detail__label"> Tipo: </strong>
+      <span
+        class="pokemon-detail__type"
+        [innerText]="type"
+        *ngFor="let type of selectedPokemon?.types"
+      ></span>
+      <span
+        class="pokemon-detail__type"
+        *ngIf="!selectedPokemon?.types || selectedPokemon?.types?.length === 0"
+      >
+        N/A
+      </span>
+    </div>
+    <div
+      class="pokemon-detail__resistances"
+      [class.pokemon-detail--more-than-one]="
+        selectedPokemon?.resistances?.length > 1
+      "
+    >
+      <strong class="pokemon-detail__label"> Forte contra: </strong>
+      <span
+        class="pokemon-detail__resistance"
+        [innerText]="resistance.type + ' ' + resistance.value"
+        *ngFor="let resistance of selectedPokemon?.resistances"
+      ></span>
+      <span
+        class="pokemon-detail__resistance"
+        *ngIf="
+          !selectedPokemon?.resistances ||
+          selectedPokemon?.resistances?.length === 0
+        "
+      >
+        N/A
+      </span>
+    </div>
+    <div
+      class="pokemon-detail__weaknesses"
+      [class.pokemon-detail--more-than-one]="
+        selectedPokemon?.weaknesses?.length > 1
+      "
+    >
+      <strong class="pokemon-detail__label"> Fraco contra: </strong>
+      <span
+        class="pokemon-detail__weakness"
+        [innerText]="weakness.type + ' ' + weakness.value"
+        *ngFor="let weakness of selectedPokemon?.weaknesses"
+      ></span>
+      <span
+        class="pokemon-detail__weakness"
+        *ngIf="
+          !selectedPokemon?.weaknesses ||
+          selectedPokemon?.weaknesses?.length === 0
+        "
+      >
+        N/A
+      </span>
+    </div>
+    <div
+      class="pokemon-detail__attacks"
+      [class.pokemon-detail--more-than-one]="
+        selectedPokemon?.attacks?.length > 1
+      "
+    >
+      <strong class="pokemon-detail__label"> Ataques: </strong>
+      <span
+        class="pokemon-detail__attack"
+        [innerText]="attack.name + ' '"
+        *ngFor="let attack of selectedPokemon?.attacks"
+        (click)="openDialog(attack)"
+      ></span>
+      <span
+        class="pokemon-detail__attack"
+        *ngIf="
+          !selectedPokemon?.attacks || selectedPokemon?.attacks?.length === 0
+        "
+      >
+        N/A
+      </span>
+    </div>
+  </div>
+</section>

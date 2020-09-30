@@ -1,0 +1,32 @@
+<mat-dialog-content class="mat-typography attack-dialog">
+  <div class="attack-dialog__body">
+    <div class="attack-dialog__cost">
+      <strong class="attack-dialog__label"> Custo de “mana” </strong>
+      <span
+        class="attack-dialog__value"
+        [innerText]="attackDetail?.convertedEnergyCost || 'N/A'"
+      ></span>
+    </div>
+    <div class="attack-dialog__name">
+      <strong class="attack-dialog__label"> Nome </strong>
+      <span
+        class="attack-dialog__value"
+        [innerText]="attackDetail?.name || 'N/A'"
+      ></span>
+    </div>
+    <div class="attack-dialog__damage">
+      <strong class="attack-dialog__label"> Dano </strong>
+      <span
+        class="attack-dialog__value"
+        [innerText]="attackDetail?.damage || 'N/A'"
+      ></span>
+    </div>
+    <div class="attack-dialog__description">
+      <strong class="attack-dialog__label"> Descrição </strong>
+      <span
+        class="attack-dialog__value"
+        [innerText]="attackDetail?.text || 'N/A'"
+      ></span>
+    </div>
+  </div>
+</mat-dialog-content>

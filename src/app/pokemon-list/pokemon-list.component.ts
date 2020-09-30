@@ -1,8 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Subscription } from 'rxjs';
-import { Card } from 'src/app/shared/models/card/card';
-import { CardsService } from 'src/app/shared/services/cards/cards.service';
+
+import { Store } from '@ngxs/store';
+import { Navigate } from '@ngxs/router-plugin';
+
+import {
+  PokemonData,
+  PokemonsStateData,
+} from '../shared/models/pokemons/pokemons.model';
+import { GetPokemons } from '../shared/store/pokemons.actions';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,28 +18,31 @@ import { CardsService } from 'src/app/shared/services/cards/cards.service';
   styleUrls: ['./pokemon-list.component.scss'],
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
-  public cards: Array<Card>;
+  public cards: Array<PokemonData>;
   private mySubs: Subscription;
-  constructor(private cardServ: CardsService, private router: Router) {
+  constructor(private store: Store, private router: Router) {
     this.mySubs = new Subscription();
     this.mySubs.add(this.getCardsSubscription());
+    this.store.dispatch(new GetPokemons());
   }
 
   public ngOnInit(): void {}
 
   private getCardsSubscription(): Subscription {
-    return this.cardServ.getList().subscribe((cards) => {
-      this.cards = cards;
-    });
+    return this.store
+      .select((state) => state.pokeDB)
+      .subscribe((cards: PokemonsStateData) => {
+        if (cards?.pokemons) {
+          this.cards = cards.pokemons;
+        }
+      });
   }
 
   public ngOnDestroy(): void {
     this.mySubs.unsubscribe();
   }
 
-  public goToDetails(selectedCard: Card): void {
-    this.router.navigateByUrl(`detail/${selectedCard.id}`).then((value) => {
-      console.log(`value/${value}`);
-    });
+  public goToDetails(selectedCard: PokemonData): void {
+    this.store.dispatch(new Navigate([`detail/${selectedCard.id}`]));
   }
 }

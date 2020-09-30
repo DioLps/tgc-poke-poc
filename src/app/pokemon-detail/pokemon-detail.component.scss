@@ -1,0 +1,59 @@
+@import '../../variables';
+
+.pokemon-detail {
+  background-color: #3f51b5;
+  color: white;
+  padding: 16px;
+  overflow-x: hidden;
+
+  &__banner {
+    width: 30vw;
+    margin: 16px auto;
+    display: block;
+    @media only screen and (max-width: $breakpoint-tablet) {
+      width: 100%;
+      margin: 0;
+    }
+  }
+  &__body {
+    font-size: 18px;
+
+    & > * {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 8px 0;
+    }
+  }
+
+  &--more-than-one {
+    text-align: center;
+    .pokemon-detail__label {
+      flex: 0 0 100%;
+      margin-bottom: 8px;
+    }
+  }
+  &__name {
+    text-align: center;
+    margin-top: 8px;
+  }
+  // &__id {
+  // }
+  // &__types {
+  // }
+  // &__type {
+  // }
+  // &__resistances {
+  // }
+  // &__resistance {
+  // }
+  // &__weaknesses {
+  // }
+  // &__weakness {
+  // }
+  // &__attacks {
+  // }
+  // &__attack {
+  // }
+}
