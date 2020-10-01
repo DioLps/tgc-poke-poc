@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Coverage Report
 
-![alt Testing img link](http://url/to/img.png)
+![Last Coverage Report](https://github.com/DioLps/tgc-poke-poc/blob/master/src/assets/coverage.png?raw=true)
