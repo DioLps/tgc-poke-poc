@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 
 import { take } from 'rxjs/operators';
+import { AttackDialogComponent } from '../components/attack-dialog/attack-dialog.component';
 import {
   PokemonData,
   PokemonsStateData,
@@ -24,7 +26,7 @@ import {
 })
 @Injectable()
 export class PokemonsState {
-  constructor(private pokeServ: PokemonsService) {}
+  constructor(private pokeServ: PokemonsService, public dialog: MatDialog) {}
 
   @Selector()
   public static pokemons(state: PokemonsStateData): PokemonData[] {
@@ -71,5 +73,6 @@ export class PokemonsState {
       (attack) => attack.name === payload.attackName
     );
     patchState(state);
+    this.dialog.open(AttackDialogComponent);
   }
 }

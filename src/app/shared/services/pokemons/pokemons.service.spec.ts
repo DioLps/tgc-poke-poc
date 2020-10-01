@@ -4,7 +4,10 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { environment } from 'src/environments/environment';
-import { PokemonsStateData } from '../../models/pokemons/pokemons.model';
+import {
+  PokemonData,
+  PokemonsStateData,
+} from '../../models/pokemons/pokemons.model';
 
 import { PokemonsService } from './pokemons.service';
 
@@ -86,6 +89,46 @@ const cardsMock = {
     },
   ],
 };
+const cardDetailMock = {
+  card: {
+    id: 'dp6-90',
+    name: 'Cubone',
+    nationalPokedexNumber: 104,
+    imageUrl: 'https://images.pokemontcg.io/dp6/90.png',
+    imageUrlHiRes: 'https://images.pokemontcg.io/dp6/90_hires.png',
+    types: ['Fighting'],
+    supertype: 'Pokémon',
+    subtype: 'Basic',
+    hp: '60',
+    retreatCost: ['Colorless'],
+    convertedRetreatCost: 1,
+    number: '90',
+    artist: 'Kagemaru Himeno',
+    rarity: 'Common',
+    series: 'Diamond & Pearl',
+    set: 'Legends Awakened',
+    setCode: 'dp6',
+    attacks: [
+      {
+        cost: ['Colorless'],
+        name: 'Headbutt',
+        text: '',
+        damage: '10',
+        convertedEnergyCost: 1,
+      },
+      {
+        cost: ['Fighting', 'Colorless'],
+        name: 'Bonemerang',
+        text:
+          'Flip 2 coins. This attack does 20 damage times the number of heads.',
+        damage: '20×',
+        convertedEnergyCost: 2,
+      },
+    ],
+    resistances: [{ type: 'Lightning', value: '-20' }],
+    weaknesses: [{ type: 'Water', value: '+10' }],
+  },
+};
 
 describe('PokemonsService', () => {
   let service: PokemonsService;
@@ -114,5 +157,18 @@ describe('PokemonsService', () => {
     );
 
     req.flush(cardsMock);
+  });
+
+  it('should call getCardDetail with this id dp6-90 and return the respective card', () => {
+    service.getCardDetail('dp6-90').subscribe((pokemon: PokemonData) => {
+      expect(pokemon).not.toBe(null);
+      expect(pokemon.id).toEqual('dp6-90');
+    });
+
+    const req = httpTestingController.expectOne(
+      environment.apiUrl + environment.apiCardsEndpoint + '/dp6-90'
+    );
+
+    req.flush(cardDetailMock);
   });
 });

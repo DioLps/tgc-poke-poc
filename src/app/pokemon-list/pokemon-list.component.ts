@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -20,7 +19,7 @@ import { GetPokemons } from '../shared/store/pokemons.actions';
 export class PokemonListComponent implements OnInit, OnDestroy {
   public cards: Array<PokemonData>;
   private mySubs: Subscription;
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store) {
     this.mySubs = new Subscription();
     this.mySubs.add(this.getCardsSubscription());
     this.store.dispatch(new GetPokemons());
